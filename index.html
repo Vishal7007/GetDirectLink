@@ -129,13 +129,9 @@
         }
 
         function getBaseUrl(fullUrl) {
-          try {
-            const urlObj = new URL(fullUrl);
-            return `${urlObj.protocol}//${urlObj.host}`;
-          } catch (error) {
-           console.error('Invalid URL:', error);
-           return null;
-         }
+          // Match protocol + domain (and port if exists)
+          const match = fullUrl.match(/^(https?:\/\/[^\/]+)/i);
+          return match ? match[1] : null;
         }
 
         // // Example usage
@@ -146,4 +142,5 @@
 </body>
 
 </html>
+
 
