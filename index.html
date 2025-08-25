@@ -95,7 +95,8 @@
                 const lastDigits = inputText1.substring(lastSlashPos + 1);
 
                 // Provided string
-                const baseString = "https://zdisk.fun/m?=58930440712039689335/yQx6tfboNhaZeCjFUnYM4gFLXGx2/";
+                const baseUrl = getBaseUrl(inputText1)
+                const baseString = baseUrl + "/m?=58930440712039689335/yQx6tfboNhaZeCjFUnYM4gFLXGx2/";
 
                 // Append the last digits to the base string
                 const finalString = baseString + lastDigits;
@@ -127,6 +128,16 @@
             });
         }
 
+        function getBaseUrl(fullUrl) {
+          try {
+            const urlObj = new URL(fullUrl);
+            return `${urlObj.protocol}//${urlObj.host}`;
+          } catch (error) {
+           console.error('Invalid URL:', error);
+           return null;
+         }
+        }
+
         // // Example usage
         // const userInput = prompt("Enter a string:"); // You can use any method to get user input in a web context
         // processString(userInput);
@@ -135,3 +146,4 @@
 </body>
 
 </html>
+
